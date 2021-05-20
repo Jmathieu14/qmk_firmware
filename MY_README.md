@@ -1,4 +1,7 @@
-# Instructions (Windows OS)
+# Initial Setup
+1. [CLI Development Environment](docs/cli_development.md)
+
+# Keymap.json to Keymap.hex! (Windows OS)
 _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
 1. First run `qmk new-keymap -kb <keyboard_name>` so that qmk creates the new keymap folder for the specified board.
     a. It will then prompt you to enter the name for the keymap.
@@ -14,30 +17,23 @@ from https://config.qmk.fm/.
 
 ### Specific Commands
 > ``` 
-> C:\\users\\jmath\\appdata\\local\\programs\\python\\python38\\python.exe ./qmk new-keymap -kb jj40
+> cd bin
+> python3 ./qmk new-keymap -kb jj40
 > 
 > python keymap_json_to_c_layers.py
 > 
-> C:\\users\\jmath\\appdata\\local\\programs\\python\\python38\\python.exe ./qmk compile -kb jj40 -km <keymap>
+> cd bin
+> python3 ./qmk compile -kb jj40 -km <keymap>
+> 
+> C:\\users\\jmath\\appdata\\local\\programs\\python\\python38\\python.exe or python3 will work
 > ```
 
 ### Custom keymaps for jj40
 ``` python
-# Keymap Name: jm_custom_mk2
-$ jm_custom_mk2 keymap directory created in: C:\msys64\home\jmath\git\qmk_firmware\keyboards\jj40\keymaps\jm_custom_mk2
+# Keymap Name: jm_split_qwerty
+$ jm_split_qwerty keymap directory created in: C:/msys64/home/jmath/git/qmk_firmware/keyboards/jj40/keymaps/jm_split_qwerty
   Compile a firmware with your new keymap by typing:
 
-        qmk compile -kb jj40 -km jm_custom_mk2
+        qmk compile -kb jj40 -km jm_split_qwerty
 
-# Keymap Name: jm_custom_split
-$ jm_custom_split keymap directory created in: C:\msys64\home\jmath\git\qmk_firmware\keyboards\jj40\keymaps\jm_custom_split←[0m
- Compile a firmware with your new keymap by typing:
-
-        qmk compile -kb jj40 -km jm_custom_split
-
-# Keymap Name: jm_custom_split_v2
-$ jm_custom_split_v2 keymap directory created in: C:/msys64/home/jmath/git/qmk_firmware/keyboards/jj40/keymaps/jm_custom_split_v2
- Compile a firmware with your new keymap by typing:
-
-        qmk compile -kb jj40 -km jm_custom_split_v2
 ```

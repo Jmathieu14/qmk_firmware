@@ -35,7 +35,7 @@ def json_file_to_c_layers(filepath: str):
 
 
 def main():
-    json_file_to_c_layers("C:\\Users\\jmath\\OneDrive\\Documents\\Peripheral Profiles\\Keyboards\\jj40\\split\\jj40_jm_custom_split_layout_v2.json")
+    json_file_to_c_layers(".\\layouts\\personal\\jj40\\jj40_split_colemakgaming_modes.json")
 
 
 if __name__ == '__main__':
