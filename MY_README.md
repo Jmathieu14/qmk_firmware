@@ -1,5 +1,6 @@
 # Initial Setup
 1. [CLI Development Environment](docs/cli_development.md)
+2. Run `make git-submodule` in msys64 at project root
 
 # Keymap.json to Keymap.hex! (Windows OS)
 _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
@@ -14,6 +15,9 @@ from https://config.qmk.fm/.
 4. Run `python keymap_json_to_c_layers.py` and paste the output into the keymap.c file for your new layout.
 
 5. Finally, run `qmk compile -kb <keyboard_name> -km <keymap>`. The hex file will be exported to `/.build`.
+    
+    a. If you have any `ANY()` functions in your keymap.c file, you will have to delete that function. I.e. 
+    `ANY(LSFT(LCTL(KC_GRV)))` will become `LSFT(LCTL(KC_GRV))`. _It will still work as expected!_
 
 ### Specific Commands
 > ``` 
