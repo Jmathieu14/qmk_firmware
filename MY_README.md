@@ -18,6 +18,16 @@ from https://config.qmk.fm/.
     
     a. If you have any `ANY()` functions in your keymap.c file, you will have to delete that function. I.e. 
     `ANY(LSFT(LCTL(KC_GRV)))` will become `LSFT(LCTL(KC_GRV))`. _It will still work as expected!_
+    
+# Flashing the firmware
+1. Open qmk toolbox and select the hex file you just made!
+
+2. Select `atmega32a` under MCU's if using a jj40 or other board that has the same processor
+
+3. Reset your board into flashing mode. If your jj40 still has the default firmware installed, unplug the device. 
+Re-plug the device while holding down the top right key.
+
+4. Flash the firmware onto your device!
 
 ### Specific Commands
 > ``` 
