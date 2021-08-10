@@ -9,7 +9,7 @@ def file_to_json_obj(filename) -> dict:
 
 
 def json_layer_to_c_layer(layer: dict, layer_i: int, row_len=12) -> str:
-    str_to_print = '[' + layer_i.__str__() + '] = LAYOUT_planck_mit( \\\n'
+    str_to_print = '[' + layer_i.__str__() + '] = LAYOUT( \\\n'
     for i in range(0, layer.__len__()):
         str_to_print += layer[i]
         if i != layer.__len__() - 1:

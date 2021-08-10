@@ -5,7 +5,8 @@
     - If you come across the following error, simply run the command `pacman -S mingw-w64-x86_64-hidapi -y` and then `qmk setup`
     - ``` python
       Error: %s: %s ('ImportError', ImportError('Unable to load any of the following libraries:libhidapi-hidraw.so libhidapi-hidraw.so.0 libhidapi-libusb.so libhidapi-libusb.so.0 libhidapi-iohidmanager.so libhidapi-iohidmanager.so.0 libhidapi.dylib hidapi.dll libhidapi-0.dll'))
-4. If there are still issues running the program, try `util/qmk_install.sh`  
+4. If there are still issues running the program, try `util/qmk_install.sh`
+5. Furthermore, make sure MSYS or QMK MSYS are on the latest available version
     
 # Keymap.json to Keymap.hex! (Windows OS)
 _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
