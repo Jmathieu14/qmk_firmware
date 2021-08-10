@@ -2,9 +2,10 @@
 1. [CLI Development Environment](docs/cli_development.md)
 2. Run `make git-submodule` in msys64 at project root
 3. Run `qmk setup`
-    - If you come across the following erorr, simply run the command `pacman -S mingw-w64-x86_64-hidapi` and then `qmk setup`
+    - If you come across the following error, simply run the command `pacman -S mingw-w64-x86_64-hidapi -y` and then `qmk setup`
     - ``` python
       Error: %s: %s ('ImportError', ImportError('Unable to load any of the following libraries:libhidapi-hidraw.so libhidapi-hidraw.so.0 libhidapi-libusb.so libhidapi-libusb.so.0 libhidapi-iohidmanager.so libhidapi-iohidmanager.so.0 libhidapi.dylib hidapi.dll libhidapi-0.dll'))
+4. If there are still issues running the program, try `util/qmk_install.sh`  
     
 # Keymap.json to Keymap.hex! (Windows OS)
 _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
