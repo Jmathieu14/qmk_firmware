@@ -1,5 +1,5 @@
 # Initial Setup
-1. [CLI Development Environment](docs/cli_development.md)
+1. [CLI Development Environment](../docs/cli_development.md)
 2. Run `make git-submodule` in msys64 at project root
 3. Run `qmk setup`
     - If you come across the following error, simply run the command `pacman -S mingw-w64-x86_64-hidapi -y` and then `qmk setup`
@@ -40,7 +40,7 @@ Re-plug the device while holding down the top right key.
 > cd bin
 > python3 ./qmk new-keymap -kb jj40
 > 
-> python keymap_json_to_c_layers.py
+> python custom/keymap_json_to_c_layers.py
 > 
 > cd bin
 > python3 ./qmk compile -kb jj40 -km <keymap>

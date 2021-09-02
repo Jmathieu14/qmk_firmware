@@ -35,7 +35,7 @@ def json_file_to_c_layers(filepath: str):
 
 
 def main():
-    json_file_to_c_layers("layouts/personal/prime_e/prime_e_jm_plus_game.json")
+    json_file_to_c_layers("../layouts/personal/prime_e/prime_e_jm_plus_game.json")
 
 
 if __name__ == '__main__':
