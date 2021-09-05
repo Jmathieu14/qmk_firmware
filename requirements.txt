@@ -1,11 +1,13 @@
 # Python requirements
 appdirs
-argcomplete
+argcomplete~=1.12.3
 colorama
 dotty-dict
-hid
-hjson
+hid~=1.0.4
+hjson~=3.0.2
 jsonschema>=3
 milc>=1.4.2
-pygments
+pygments~=2.9.0
 pyusb
+
+simplejson~=3.17.5

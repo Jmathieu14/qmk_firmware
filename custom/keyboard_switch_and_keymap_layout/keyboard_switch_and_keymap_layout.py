@@ -33,6 +33,13 @@ class KeyboardKeymap:
         self.name = name
         self.key_codes = key_codes
 
+    def get_min_keycode_length(self):
+        min_length = 0
+        for key_code in self.key_codes:
+            if key_code.__len__() > min_length:
+                min_length = key_code.__len__()
+        return min_length
+
 
 class KeyboardLayout:
     def __init__(self, switch_layout: KeyboardSwitchLayout, keymap_layers: list[KeyboardKeymap]):
