@@ -1,3 +1,17 @@
+def get_x_spaces(x: int):
+    string_of_spaces = ''
+    for i in range(0, x):
+        string_of_spaces = string_of_spaces + ' '
+    return string_of_spaces
+
+
+def pad_string_to_length(my_str, required_length):
+    if my_str.__len__() < required_length:
+        spaces_to_add = required_length - my_str.__len__()
+        return '{0}{1}'.format(my_str, get_x_spaces(spaces_to_add))
+    return my_str
+
+
 class KeyboardSwitchRow:
     def __init__(self, switch_count):
         self.switch_count = switch_count
@@ -20,6 +34,13 @@ class KeyboardSwitchLayout:
         for row in self.rows:
             total_count = total_count + row.switch_count
         return total_count
+
+    def get_largest_row_size(self):
+        largest_row_size = self.rows[0].switch_count
+        if self.rows.__len__() > 1:
+            for i in range(1, self.rows.__len__()):
+                largest_row_size = max(largest_row_size, self.rows[i].switch_count)
+        return largest_row_size
 
     def __str__(self):
         rows_string = ""
@@ -65,17 +86,24 @@ class KeyboardLayout:
             switch_index = switch_index + max_index + 1
         return min_length
 
+    def get_min_keycode_length_per_column_for_layer(self, layer: KeyboardKeymap):
+        min_keycode_lengths = []
+        largest_row = self.switch_layout.get_largest_row_size()
+        for i in range(0, largest_row):
+            min_keycode_lengths.append(self.min_keycode_length_for_column(i, layer))
+        return min_keycode_lengths
+
     def layer_as_string(self, layer_index: int):
         layer: KeyboardKeymap = self.keymap_layers[layer_index]
-        min_length = layer.get_min_keycode_length()
         string_to_return = '\n[{0}] = LAYOUT( \\\n'.format(layer.name)
         num_rows = self.switch_layout.rows.__len__()
         rows = self.switch_layout.rows
         key_code_index = 0
+        min_keycode_lengths = self.get_min_keycode_length_per_column_for_layer(layer)
         for row_index in range(0, num_rows):
             for switch_index in range(0, rows[row_index].switch_count):
-                min_keycode_length = self.min_keycode_length_for_column(switch_index, layer)
-                my_keycode = layer.key_codes[key_code_index]
+                min_keycode_length = min_keycode_lengths[switch_index]
+                my_keycode = pad_string_to_length(layer.key_codes[key_code_index], min_keycode_length)
                 if row_index == num_rows - 1 and switch_index == rows[row_index].switch_count - 1:
                     string_to_return = '{0}{1})'.format(string_to_return, my_keycode)
                 elif switch_index == rows[row_index].switch_count - 1:

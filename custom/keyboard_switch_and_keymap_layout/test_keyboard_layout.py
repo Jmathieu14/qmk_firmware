@@ -87,6 +87,14 @@ class TestKeyboardLayout(unittest.TestCase):
                    'KC_2, KC_1, TO(DEFAULT))'
         self.assertEqual(actual, expected)
 
+    def test_layer_as_string__returns_expected_string_for_uneven_keyboard_layout(self):
+        actual = uneven_keyboard_layout.layer_as_string(0)
+        expected = '\n[uneven_layer] = LAYOUT( \\\n' \
+                   'KC_0  , \\\n' \
+                   'KC_DOT, KC_RGHT, \\\n' \
+                   'KC_1  , KC_2   , KC_3)'
+        self.assertEqual(actual, expected)
+
 
 def get_suite():
     return unittest.TestLoader().loadTestsFromTestCase(TestKeyboardLayout)
