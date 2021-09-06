@@ -53,5 +53,37 @@ class KeyboardLayout:
                 raise ValueError("Layer {0} has {1} keycodes on a board with {2} switches"
                                  .format(layer.name, layer.key_codes.__len__(), self.switch_layout.total_switch_count()))
 
+    def min_keycode_length_for_column(self, column_index, layer: KeyboardKeymap):
+        rows = self.switch_layout.rows
+        min_length = layer.key_codes[0].__len__()
+        switch_index = column_index
+        for i in range(0, rows.__len__()):
+            max_index = rows[i].switch_count - 1
+            if column_index <= max_index:
+                keycode = layer.key_codes[switch_index]
+                min_length = max(min_length, keycode.__len__())
+            switch_index = switch_index + max_index + 1
+        return min_length
+
+    def layer_as_string(self, layer_index: int):
+        layer: KeyboardKeymap = self.keymap_layers[layer_index]
+        min_length = layer.get_min_keycode_length()
+        string_to_return = '\n[{0}] = LAYOUT( \\\n'.format(layer.name)
+        num_rows = self.switch_layout.rows.__len__()
+        rows = self.switch_layout.rows
+        key_code_index = 0
+        for row_index in range(0, num_rows):
+            for switch_index in range(0, rows[row_index].switch_count):
+                min_keycode_length = self.min_keycode_length_for_column(switch_index, layer)
+                my_keycode = layer.key_codes[key_code_index]
+                if row_index == num_rows - 1 and switch_index == rows[row_index].switch_count - 1:
+                    string_to_return = '{0}{1})'.format(string_to_return, my_keycode)
+                elif switch_index == rows[row_index].switch_count - 1:
+                    string_to_return = '{0}{1}, \\\n'.format(string_to_return, my_keycode)
+                else:
+                    string_to_return = '{0}{1}, '.format(string_to_return, my_keycode)
+                key_code_index = key_code_index + 1
+        return string_to_return
+
     def __str__(self):
         pass
