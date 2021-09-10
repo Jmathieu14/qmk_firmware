@@ -95,7 +95,7 @@ class KeyboardLayout:
 
     def layer_as_string(self, layer_index: int):
         layer: KeyboardKeymap = self.keymap_layers[layer_index]
-        string_to_return = '\n[{0}] = LAYOUT( \\\n'.format(layer.name)
+        string_to_return = '\n\t[{0}] = LAYOUT( \\\n'.format(layer.name)
         num_rows = self.switch_layout.rows.__len__()
         rows = self.switch_layout.rows
         key_code_index = 0
@@ -104,14 +104,21 @@ class KeyboardLayout:
             for switch_index in range(0, rows[row_index].switch_count):
                 min_keycode_length = min_keycode_lengths[switch_index]
                 my_keycode = pad_string_to_length(layer.key_codes[key_code_index], min_keycode_length)
+                tab_str = '\t\t' if switch_index == 0 else ''
                 if row_index == num_rows - 1 and switch_index == rows[row_index].switch_count - 1:
-                    string_to_return = '{0}{1})'.format(string_to_return, my_keycode)
+                    string_to_return = '{0}{1}{2})'.format(string_to_return, tab_str, my_keycode)
                 elif switch_index == rows[row_index].switch_count - 1:
-                    string_to_return = '{0}{1}, \\\n'.format(string_to_return, my_keycode)
+                    string_to_return = '{0}{1}{2}, \\\n'.format(string_to_return, tab_str, my_keycode)
                 else:
-                    string_to_return = '{0}{1}, '.format(string_to_return, my_keycode)
+                    string_to_return = '{0}{1}{2}, '.format(string_to_return, tab_str, my_keycode)
                 key_code_index = key_code_index + 1
         return string_to_return
 
     def __str__(self):
-        pass
+        keyboard_layout_as_string = "const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n"
+        for layer_index in range(0, self.keymap_layers.__len__()):
+            layer_string = self.layer_as_string(layer_index)
+            if layer_index != self.keymap_layers.__len__() - 1:
+                layer_string = layer_string + ","
+            keyboard_layout_as_string = "{0}{1}\n".format(keyboard_layout_as_string, layer_string)
+        return keyboard_layout_as_string + "\n};"

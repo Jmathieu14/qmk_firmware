@@ -73,27 +73,52 @@ class TestKeyboardLayout(unittest.TestCase):
 
     def test_layer_as_string__returns_expected_string_for_layer_1(self):
         actual = nine_key_keyboard_layout.layer_as_string(0)
-        expected = '\n[layer_1] = LAYOUT( \\\n' \
-                   'KC_8, KC_7, KC_6, \\\n' \
-                   'KC_5, KC_4, KC_3, \\\n' \
-                   'KC_2, KC_1, KC_0)'
+        expected = '\n\t[layer_1] = LAYOUT( \\\n' \
+                   '\t\tKC_8, KC_7, KC_6, \\\n' \
+                   '\t\tKC_5, KC_4, KC_3, \\\n' \
+                   '\t\tKC_2, KC_1, KC_0)'
         self.assertEqual(actual, expected)
 
     def test_layer_as_string__returns_expected_string_for_layer_with_one_long_keycode(self):
         actual = long_keycode_keyboard_layout.layer_as_string(0)
-        expected = '\n[layer_with_one_long_keycode] = LAYOUT( \\\n' \
-                   'KC_8, KC_7, KC_6       , \\\n' \
-                   'KC_5, KC_4, KC_3       , \\\n' \
-                   'KC_2, KC_1, TO(DEFAULT))'
+        expected = '\n\t[layer_with_one_long_keycode] = LAYOUT( \\\n' \
+                   '\t\tKC_8, KC_7, KC_6       , \\\n' \
+                   '\t\tKC_5, KC_4, KC_3       , \\\n' \
+                   '\t\tKC_2, KC_1, TO(DEFAULT))'
         self.assertEqual(actual, expected)
 
     def test_layer_as_string__returns_expected_string_for_uneven_keyboard_layout(self):
         actual = uneven_keyboard_layout.layer_as_string(0)
-        expected = '\n[uneven_layer] = LAYOUT( \\\n' \
-                   'KC_0  , \\\n' \
-                   'KC_DOT, KC_RGHT, \\\n' \
-                   'KC_1  , KC_2   , KC_3)'
+        expected = '\n\t[uneven_layer] = LAYOUT( \\\n' \
+                   '\t\tKC_0  , \\\n' \
+                   '\t\tKC_DOT, KC_RGHT, \\\n' \
+                   '\t\tKC_1  , KC_2   , KC_3)'
         self.assertEqual(actual, expected)
+
+    def test__str__returns_expected_string_for_simple_layer_list(self):
+        keycodes_layer1_list = [
+            "KC_1", "KC_2",
+            "KC_3", "KC_4"
+        ]
+        keycodes_layer2_list = [
+            "KC_4", "KC_3",
+            "KC_2", "KC_1"
+        ]
+        layer_1 = KeyboardKeymap("layer1", keycodes_layer1_list)
+        layer_2 = KeyboardKeymap("layer2", keycodes_layer2_list)
+        two_switch_row = KeyboardSwitchRow(2)
+        two_by_two_switch_layout = KeyboardSwitchLayout([two_switch_row, two_switch_row])
+        simple_keyboard_layout = KeyboardLayout(two_by_two_switch_layout, [layer_1, layer_2])
+        simple_keyboard_layout_string = simple_keyboard_layout.__str__()
+        expected_layout_string = "const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n\n" \
+                                 "\t[layer1] = LAYOUT( \\\n" \
+                                 "\t\tKC_1, KC_2, \\\n" \
+                                 "\t\tKC_3, KC_4),\n\n" \
+                                 "\t[layer2] = LAYOUT( \\\n" \
+                                 "\t\tKC_4, KC_3, \\\n" \
+                                 "\t\tKC_2, KC_1)\n\n" \
+                                 "};"
+        self.assertEqual(expected_layout_string, simple_keyboard_layout_string)
 
 
 def get_suite():
