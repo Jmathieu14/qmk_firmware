@@ -8,7 +8,12 @@ from custom.keyboard_switch_and_keymap_layout.parser.keymap_c_parser import pars
 switch_row_len_2 = KeyboardSwitchRow(2)
 simple_switch_layout = KeyboardSwitchLayout([switch_row_len_2, switch_row_len_2])
 
+
 class TestKeymapCParser(unittest.TestCase):
+
+    def test_import_simple_keymap__has_expected_number_of_layers(self):
+        actual_keyboard_layout = parse_keymap_c('./assets/simple_keymap.c', simple_switch_layout)
+        self.assertEqual(1, actual_keyboard_layout.keymap_layers.__len__())
 
     def test_import_simple_keymap__returns_expected_keyboard_layout_object(self):
         actual_keyboard_layout = parse_keymap_c('./assets/simple_keymap.c', simple_switch_layout)
