@@ -26,7 +26,6 @@ def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
     if does_file_exist(filepath):
         with open(abs_path(filepath), 'r') as my_file:
             raw_content = my_file.read()
-        print(raw_content)
         keymaps_match = KEYMAPS_START_MATCHER.search(raw_content)
         if keymaps_match is not None:
             end_of_keymaps_start = keymaps_match.end()
@@ -34,8 +33,16 @@ def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
             raw_content = raw_content.replace('\\', '')
             layers = KEYMAP_LAYER_MATCHER.search(raw_content)
             keymap_layers = []
-            for layer in layers.groups():
-                switch_layer = KeyboardKeymap('test', ['', '', '', ''])
+            print('Layers: ')
+            for layer_index in range(0, layers.groups().__len__()):
+                layer = layers.group(layer_index)
+                print(layer)
+                layer_matcher = re.compile('\[(\w|\s)+]')
+                layer_name = layer_matcher.search(layer)
+                layer_name = layer_name.group().strip()
+                layer_name = layer_name.replace('[', '').replace(']', '')
+                print(layer_name)
+                switch_layer = KeyboardKeymap(layer_name, ['', '', '', ''])
                 keymap_layers.append(switch_layer)
             return KeyboardLayout(switch_layout, keymap_layers)
     else:
