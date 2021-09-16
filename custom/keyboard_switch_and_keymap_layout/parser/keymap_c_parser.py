@@ -7,7 +7,7 @@ import re
 from custom.keyboard_switch_and_keymap_layout.keyboard_switch_and_keymap_layout import KeyboardSwitchLayout, KeyboardKeymap, KeyboardLayout
 
 KEYMAPS_START_MATCHER = re.compile('keymaps\[]\[MATRIX_ROWS]\[MATRIX_COLS]\s*=\s*{')
-KEYMAP_LAYER_MATCHER = re.compile('\[\w+]\s*=\s*LAYOUT\((\w|\s|,)+\),*')
+KEYMAP_LAYER_MATCHER = re.compile('\[\w+]\s*=\s*LAYOUT\((\w|\s|,|\(|\))+\),*')
 
 
 def does_file_exist(path):
@@ -46,6 +46,31 @@ def remove_c_comments(s: str):
     return s
 
 
+def has_correct_num_of_closing_parentheses(key_code_with_parentheses: str):
+    opening_parenthesis_count = key_code_with_parentheses.count('(')
+    closing_parenthesis_count = key_code_with_parentheses.count(')')
+    return opening_parenthesis_count == closing_parenthesis_count
+
+
+def format_keycodes_with_parentheses(key_codes: list[str]):
+    formatted_keycodes = []
+    key_code_with_parentheses = ''
+    for key_code in key_codes:
+        if key_code.__contains__('(') and not key_code.__contains__(')'):
+            if key_code_with_parentheses == '':
+                key_code_with_parentheses = key_code
+            else:
+                key_code_with_parentheses = key_code_with_parentheses + key_code
+        elif not key_code.__contains__(')') or has_correct_num_of_closing_parentheses(key_code):
+            formatted_keycodes.append(key_code)
+        else:
+            key_code_with_parentheses = key_code_with_parentheses + ',' + key_code
+            if has_correct_num_of_closing_parentheses(key_code_with_parentheses):
+                formatted_keycodes.append(key_code_with_parentheses)
+                key_code_with_parentheses = ''
+    return formatted_keycodes
+
+
 def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
     if does_file_exist(filepath):
         with open(abs_path(filepath), 'r') as my_file:
@@ -73,7 +98,8 @@ def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
                     key_codes = key_codes[:-1]
                 key_codes = remove_all_whitespace(key_codes)
                 key_codes = key_codes.split(',')
-                switch_layer = KeyboardKeymap(layer_name, key_codes)
+                formatted_keycodes = format_keycodes_with_parentheses(key_codes)
+                switch_layer = KeyboardKeymap(layer_name, formatted_keycodes)
                 keymap_layers.append(switch_layer)
             return KeyboardLayout(switch_layout, keymap_layers)
     else:

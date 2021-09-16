@@ -24,7 +24,7 @@ class TestKeymapCParser(unittest.TestCase):
     def test_import_two_layer_keymap__returns_expected_keyboard_layout_object(self):
         actual_keyboard_layout = parse_keymap_c('./assets/two_layer_keymap.c', two_layer_switch_layout)
         expected_keyboard_layout = KeyboardLayout(two_layer_switch_layout, [
-            KeyboardKeymap('_default', ['KC_1', 'KC_2', 'KC_3', 'KC_4']),
+            KeyboardKeymap('_default', ['KC_1', 'KC_2', 'LT(NUM,KC_ESC)', 'MO(_special)']),
             KeyboardKeymap('_special', ['KC_A', 'KC_B', 'KC_C', 'KC_D'])
         ])
         self.assertEqual(expected_keyboard_layout, actual_keyboard_layout)
@@ -32,7 +32,7 @@ class TestKeymapCParser(unittest.TestCase):
     def test_import_keymap_with_comments__returns_expected_keyboard_layout_object(self):
         actual_keyboard_layout = parse_keymap_c('./assets/keymap_with_comments.c', two_layer_switch_layout)
         expected_keyboard_layout = KeyboardLayout(two_layer_switch_layout, [
-            KeyboardKeymap('_default', ['KC_1', 'KC_2', 'KC_3', 'KC_4']),
+            KeyboardKeymap('_default', ['KC_1', 'KC_2', 'KC_3', 'MO(_special)']),
             KeyboardKeymap('_special', ['KC_A', 'KC_B', 'KC_C', 'KC_D'])
         ])
         self.assertEqual(expected_keyboard_layout, actual_keyboard_layout)
