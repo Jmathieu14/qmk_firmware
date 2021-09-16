@@ -55,9 +55,11 @@ class KeyboardSwitchLayout:
 
     def __eq__(self, other):
         if not isinstance(other, KeyboardSwitchLayout) or not self.rows.__len__() == other.rows.__len__():
+            print('{0} is not an instance of KeyboardSwitchLayout or does not have {1} rows'.format('other', self.rows.__len__()))
             return False
         for index in range(0, self.rows.__len__()):
             if not self.rows[index].__eq__(other.rows[index]):
+                print('{0} does not equal {1}'.format(self.rows[index], other.rows[index]))
                 return False
         return True
 
@@ -76,9 +78,12 @@ class KeyboardKeymap:
 
     def __eq__(self, other):
         if not isinstance(other, KeyboardKeymap) or not self.name == other.name or not self.key_codes.__len__() == other.key_codes.__len__():
+            print('{0} is not an instance of KeyboardKeymap, or does not have the name {1}, or does not {2} keycodes'
+                  .format('other', self.name, self.key_codes.__len__()))
             return False
         for index in range(self.key_codes.__len__()):
             if self.key_codes[index] != other.key_codes[index]:
+                print('{0} does not equal {1}'.format(self.key_codes[index], other.key_codes[index]))
                 return False
         return True
 
@@ -145,6 +150,11 @@ class KeyboardLayout:
         return keyboard_layout_as_string + "\n};"
 
     def __eq__(self, other):
-        if not isinstance(other, KeyboardLayout):
+        if not isinstance(other, KeyboardLayout) or not self.keymap_layers.__len__() == other.keymap_layers.__len__():
+            print('{0} is not an instance of KeyboardLayout or does not have {1} keymaps'
+                  .format('other', self.keymap_layers.__len__()))
             return False
-        return self.switch_layout.__eq__(other.switch_layout) and self.keymap_layers.__eq__(other.keymap_layers)
+        for index in range(0, self.keymap_layers.__len__()):
+            if not self.keymap_layers[index].__eq__(other.keymap_layers[index]):
+                return False
+        return self.switch_layout.__eq__(other.switch_layout)
