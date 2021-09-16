@@ -22,6 +22,14 @@ def abs_path(path):
     return path
 
 
+def remove_all_whitespace(s: str):
+    s = s.strip()
+    s = s.replace('\n', '')
+    s = s.replace('\t', '')
+    s = s.replace(' ', '')
+    return s
+
+
 def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
     if does_file_exist(filepath):
         with open(abs_path(filepath), 'r') as my_file:
@@ -36,13 +44,16 @@ def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
             print('Layers: ')
             for layer_index in range(0, layers.groups().__len__()):
                 layer = layers.group(layer_index)
-                print(layer)
-                layer_matcher = re.compile('\[(\w|\s)+]')
-                layer_name = layer_matcher.search(layer)
+                layer_name_matcher = re.compile('\[(\w|\s)+]')
+                layer_start_matcher = re.compile('\[(\w|\s)+]\s*=\s*\w+\(')
+                layer_name = layer_name_matcher.search(layer)
                 layer_name = layer_name.group().strip()
                 layer_name = layer_name.replace('[', '').replace(']', '')
-                print(layer_name)
-                switch_layer = KeyboardKeymap(layer_name, ['', '', '', ''])
+                layer_start = layer_start_matcher.search(layer)
+                key_codes = layer[layer_start.end(): -1]
+                key_codes = remove_all_whitespace(key_codes)
+                key_codes = key_codes.split(',')
+                switch_layer = KeyboardKeymap(layer_name, key_codes)
                 keymap_layers.append(switch_layer)
             return KeyboardLayout(switch_layout, keymap_layers)
     else:

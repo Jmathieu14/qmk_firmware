@@ -1,5 +1,3 @@
-# TODO: import simple_keymap and make sure you get the expected layers
-
 import unittest
 
 from custom.keyboard_switch_and_keymap_layout.keyboard_switch_and_keymap_layout import KeyboardSwitchRow, KeyboardSwitchLayout, KeyboardLayout, KeyboardKeymap

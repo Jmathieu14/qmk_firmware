@@ -24,6 +24,11 @@ class KeyboardSwitchRow:
     def __str__(self):
         return "row switch count: {0}".format(self.switch_count)
 
+    def __eq__(self, other):
+        if not isinstance(other, KeyboardSwitchRow):
+            return False
+        return self.switch_count == other.switch_count
+
 
 class KeyboardSwitchLayout:
     def __init__(self, rows: list[KeyboardSwitchRow]):
@@ -48,6 +53,14 @@ class KeyboardSwitchLayout:
             rows_string = "{0}\n{1}".format(rows_string, row)
         return rows_string
 
+    def __eq__(self, other):
+        if not isinstance(other, KeyboardSwitchLayout) or not self.rows.__len__() == other.rows.__len__():
+            return False
+        for index in range(0, self.rows.__len__()):
+            if not self.rows[index].__eq__(other.rows[index]):
+                return False
+        return True
+
 
 class KeyboardKeymap:
     def __init__(self, name: str, key_codes: list[str]):
@@ -60,6 +73,14 @@ class KeyboardKeymap:
             if key_code.__len__() > min_length:
                 min_length = key_code.__len__()
         return min_length
+
+    def __eq__(self, other):
+        if not isinstance(other, KeyboardKeymap) or not self.name == other.name or not self.key_codes.__len__() == other.key_codes.__len__():
+            return False
+        for index in range(self.key_codes.__len__()):
+            if self.key_codes[index] != other.key_codes[index]:
+                return False
+        return True
 
 
 class KeyboardLayout:
@@ -122,3 +143,8 @@ class KeyboardLayout:
                 layer_string = layer_string + ","
             keyboard_layout_as_string = "{0}{1}\n".format(keyboard_layout_as_string, layer_string)
         return keyboard_layout_as_string + "\n};"
+
+    def __eq__(self, other):
+        if not isinstance(other, KeyboardLayout):
+            return False
+        return self.switch_layout.__eq__(other.switch_layout) and self.keymap_layers.__eq__(other.keymap_layers)
