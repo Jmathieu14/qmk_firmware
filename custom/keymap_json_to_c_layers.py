@@ -1,4 +1,6 @@
+import getopt
 import simplejson as j
+import sys
 
 
 def file_to_json_obj(filename) -> dict:
@@ -34,9 +36,20 @@ def json_file_to_c_layers(filepath: str):
     print('};')
 
 
-def main():
-    json_file_to_c_layers("../layouts/personal/prime_e/prime_e_jm_plus_game.json")
+def main(argv: list):
+    help_string = 'python custom/keymap_json_to_c_layers.py -f <PATH_TO_YOUR_FILE>'
+    try:
+        opts, args = getopt.getopt(argv, 'hf:', ["file="])
+    except getopt.GetoptError:
+        print(help_string)
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print(help_string)
+            sys.exit()
+        elif opt in ('-f', '--file'):
+            json_file_to_c_layers(arg)
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])

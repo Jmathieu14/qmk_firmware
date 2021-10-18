@@ -89,9 +89,10 @@ class KeyboardKeymap:
 
 
 class KeyboardLayout:
-    def __init__(self, switch_layout: KeyboardSwitchLayout, keymap_layers: list[KeyboardKeymap]):
+    def __init__(self, switch_layout: KeyboardSwitchLayout, keymap_layers: list[KeyboardKeymap], layout_type: str = 'LAYOUT'):
         self.switch_layout = switch_layout
         self.keymap_layers = keymap_layers
+        self.layout_type = layout_type
         self._validate_input()
 
     def _validate_input(self):
@@ -121,7 +122,7 @@ class KeyboardLayout:
 
     def layer_as_string(self, layer_index: int):
         layer: KeyboardKeymap = self.keymap_layers[layer_index]
-        string_to_return = '\n\t[{0}] = LAYOUT( \\\n'.format(layer.name)
+        string_to_return = '\n\t[{0}] = {1}( \\\n'.format(layer.name, self.layout_type)
         num_rows = self.switch_layout.rows.__len__()
         rows = self.switch_layout.rows
         key_code_index = 0

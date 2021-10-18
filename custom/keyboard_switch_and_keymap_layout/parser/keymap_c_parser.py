@@ -7,7 +7,6 @@ import re
 from custom.keyboard_switch_and_keymap_layout.keyboard_switch_and_keymap_layout import KeyboardSwitchLayout, KeyboardKeymap, KeyboardLayout
 
 KEYMAPS_START_MATCHER = re.compile('keymaps\[]\[MATRIX_ROWS]\[MATRIX_COLS]\s*=\s*{')
-KEYMAP_LAYER_MATCHER = re.compile('\[\w+]\s*=\s*LAYOUT\((\w|\s|,|\(|\))+\),*')
 
 
 def does_file_exist(path):
@@ -71,7 +70,9 @@ def format_keycodes_with_parentheses(key_codes: list[str]):
     return formatted_keycodes
 
 
-def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
+def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout, layout_type: str = 'LAYOUT'):
+    keymap_layer_matcher_string = '\[\w+]\s*=\s*{0}\((\w|\s|,|\(|\))+\),*'.format(layout_type)
+    keymap_layer_matcher = re.compile(keymap_layer_matcher_string)
     if does_file_exist(filepath):
         with open(abs_path(filepath), 'r') as my_file:
             raw_content = my_file.read()
@@ -81,7 +82,7 @@ def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
             end_of_keymaps_start = keymaps_match.end()
             cleaned_content = cleaned_content[end_of_keymaps_start:]
             cleaned_content = cleaned_content.replace('\\', '')
-            layers = [layer.group() for layer in KEYMAP_LAYER_MATCHER.finditer(cleaned_content)]
+            layers = [layer.group() for layer in keymap_layer_matcher.finditer(cleaned_content)]
             keymap_layers = []
             for layer_index in range(0, layers.__len__()):
                 layer = layers[layer_index]
@@ -101,7 +102,7 @@ def parse_keymap_c(filepath: str, switch_layout: KeyboardSwitchLayout):
                 formatted_keycodes = format_keycodes_with_parentheses(key_codes)
                 switch_layer = KeyboardKeymap(layer_name, formatted_keycodes)
                 keymap_layers.append(switch_layer)
-            return KeyboardLayout(switch_layout, keymap_layers)
+            return KeyboardLayout(switch_layout, keymap_layers, layout_type)
     else:
         raise FileNotFoundError('Could not find {0}'.format(filepath))
 

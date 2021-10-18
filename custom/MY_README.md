@@ -58,9 +58,18 @@ $ jm_split_qwerty keymap directory created in: C:/msys64/home/jmath/git/qmk_firm
 
         qmk compile -kb jj40 -km jm_split_qwerty
 
-# Keymap Name: jm_game
+# Keymap Name: jm_game (for Prime E)
 INFO jm_game keymap directory created in: C:/msys64/home/jmath/git/qmk_firmware/keyboards/primekb/prime_e/keymaps/jm_game
 INFO Compile a firmware with your new keymap by typing:
 
         qmk compile -kb primekb/prime_e/rgb -km jm_game
+        
+# Keymap Name: jm_game (for Mercutio)
+# Ψ jm_game keymap directory created in: C:/Users/User/Local_Documents/git/qmk_firmware/keyboards/mechwild/mercutio/keymaps/jm_game
+# Ψ Compile a firmware with your new keymap by typing:
+
+        qmk compile -kb mechwild/mercutio -km jm_game
 ```
+
+##### Other Resources
+- https://www.tutorialspoint.com/python/python_command_line_arguments.htm
