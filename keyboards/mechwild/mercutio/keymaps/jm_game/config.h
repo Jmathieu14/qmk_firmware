@@ -16,7 +16,6 @@
 
 #pragma once
 
-/* Define custom font */
 #define OLED_FONT_H "keyboards/mechwild/mercutio/lib/mercutiofont.c"
 #define TAPPING_TERM 175
 #define PERMISSIVE_HOLD
