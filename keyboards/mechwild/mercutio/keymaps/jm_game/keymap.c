@@ -58,10 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_0   , KC_ENT , KC_TRNS, KC_TRNS),
 
 	[SYM_FUNC] = LAYOUT_all( \
-		                                                                                                   KC_TRNS, \
-		KC_GRV , KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD, \
-		KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_MINS, KC_PLUS, KC_TRNS, KC_LBRC, KC_RBRC, KC_BSLS, KC_PIPE, \
-		KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_UNDS, KC_GRV , KC_EQL , KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, \
+		                                                                                                        KC_TRNS, \
+		KC_GRV , KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR     , KC_LPRN, KC_RPRN, KC_TILD, \
+		KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_MINS, KC_PLUS, KC_TRNS, KC_LBRC     , KC_RBRC, KC_BSLS, KC_PIPE, \
+		KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_UNDS, KC_GRV , KC_EQL , LSFT(KC_DOT), KC_LCBR, KC_RCBR, KC_TRNS, \
 		KC_TRNS, KC_TRNS, KC_F12 , KC_F11 , KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
 
 	[MEDIA] = LAYOUT_all( \
