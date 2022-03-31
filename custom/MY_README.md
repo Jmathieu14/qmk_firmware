@@ -22,9 +22,11 @@ from https://config.qmk.fm/.
 
 4. Run `python keymap_json_to_c_layers.py` and paste the output into the keymap.c file for your new layout.
 
-5. Open `QMK MSYS` and navigate to this qmk_firmware repo 
+5. Open `QMK MSYS` and navigate to this qmk_firmware repo
 
-6. Finally, run `qmk compile -kb <keyboard_name> -km <keymap>`. The hex file will be exported to `/.build`.
+6. Type `export PYTHONUTF8=1` into the cli to ensure python and Windows get along
+
+7. Finally, run `qmk compile -kb <keyboard_name> -km <keymap>`. The hex file will be exported to `/.build`.
     
     a. If you have any `ANY()` functions in your keymap.c file, you will have to delete that function. I.e. 
     `ANY(LSFT(LCTL(KC_GRV)))` will become `LSFT(LCTL(KC_GRV))`. _It will still work as expected!_
