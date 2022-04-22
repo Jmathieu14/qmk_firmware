@@ -5,5 +5,6 @@
 nose2
 flake8
 pep8-naming
+pyflakes
 yapf
 simplejson~=3.17.5
