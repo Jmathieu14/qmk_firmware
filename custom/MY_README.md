@@ -7,12 +7,14 @@
       Error: %s: %s ('ImportError', ImportError('Unable to load any of the following libraries:libhidapi-hidraw.so libhidapi-hidraw.so.0 libhidapi-libusb.so libhidapi-libusb.so.0 libhidapi-iohidmanager.so libhidapi-iohidmanager.so.0 libhidapi.dylib hidapi.dll libhidapi-0.dll'))
 4. If there are still issues running the program, try `util/qmk_install.sh`
 5. If you come across an error that states it is missing certain drivers, run `qmk clean`
+
     a. More information on that can be found here: https://www.reddit.com/r/olkb/comments/pdk39w/qmk_breaking_changes_2021_august_28/
 6. Furthermore, make sure MSYS or QMK MSYS are on the latest available version
     
 # Keymap.json to Keymap.hex! (Windows OS)
 _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
 1. First run `qmk new-keymap -kb <keyboard_name>` so that qmk creates the new keymap folder for the specified board.
+
     a. It will then prompt you to enter the name for the keymap.
     
 2. Now open 'keymap_json_to_c_layers.py' and make sure the path in the main method points to the qmk json keymap exported 
@@ -25,7 +27,7 @@ from https://config.qmk.fm/.
 5. Open `QMK MSYS` and navigate to this qmk_firmware repo 
 
 6. Finally, run `qmk compile -kb <keyboard_name> -km <keymap>`. The hex file will be exported to `/.build`.
-    
+
     a. If you have any `ANY()` functions in your keymap.c file, you will have to delete that function. I.e. 
     `ANY(LSFT(LCTL(KC_GRV)))` will become `LSFT(LCTL(KC_GRV))`. _It will still work as expected!_
     

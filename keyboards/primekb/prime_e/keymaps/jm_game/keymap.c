@@ -100,29 +100,27 @@ void led_set_user(uint8_t usb_led) {
 
 }
 
-//function for layer indicator LED
+// function for layer indicator LED
 layer_state_t layer_state_set_user(layer_state_t state) {
-    if (get_highest_layer(state) == MEDIA) {
-        writePinHigh(B2);
-	} else {
-		writePinLow(B2);
-    }
-    if (get_highest_layer(state) == NUM) {
-        writePinHigh(B3);
-    } else {
-        writePinLow(B3);
-    }
-    if (get_highest_layer(state) == NAV) {
-        writePinHigh(B1);
-    } else {
-        writePinLow(B1);
-    }
-    if (get_highest_layer(state) == SYM_FUNC) {
-        writePinHigh(B2);
-        writePinHigh(B3);
-    } else {
-        writePinLow(B2);
-        writePinLow(B3);
+    switch(get_highest_layer(state)) {
+        case NUM:
+            writePinHigh(B3);
+            break;
+        case MEDIA:
+            writePinHigh(B2);
+            break;
+        case SYM_FUNC:
+            writePinHigh(B1);
+            writePinHigh(B2);
+            break;
+        case NAV:
+            writePinHigh(B1);
+            break;
+        default:
+            writePinLow(B1);
+            writePinLow(B2);
+            writePinLow(B3);
+            break;
     }
     return state;
 }
