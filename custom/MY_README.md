@@ -22,7 +22,7 @@ from https://config.qmk.fm/.
     
 3. Next, navigate to the folder that contains this new keymap.
 
-4. Run `python keymap_json_to_c_layers.py` and paste the output into the keymap.c file for your new layout.
+4. Run `python keymap_json_to_c_layers.py -f <json_filepath>` and paste the output into the keymap.c file for your new layout.
 
 5. Open `QMK MSYS` and navigate to this qmk_firmware repo
 
