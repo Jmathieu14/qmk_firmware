@@ -70,6 +70,13 @@ INFO Compile a firmware with your new keymap by typing:
 
         qmk compile -kb primekb/prime_e/rgb -km jm_game
         
+# qmk new-keymap -kb primekb/prime_e/rgb
+Keymap Name: jm_game_colemak_modified
+Ψ jm_game_colemak_modified keymap directory created in: C:/Users/User/Local_Documents/git/qmk_firmware/keyboards/primekb/prime_e/keymaps/jm_game_colemak_modified
+Ψ Compile a firmware with your new keymap by typing:
+
+        qmk compile -kb primekb/prime_e/rgb -km jm_game_colemak_modified
+        
 # Keymap Name: jm_game (for Mercutio)
 # Ψ jm_game keymap directory created in: C:/Users/User/Local_Documents/git/qmk_firmware/keyboards/mechwild/mercutio/keymaps/jm_game
 # Ψ Compile a firmware with your new keymap by typing:
