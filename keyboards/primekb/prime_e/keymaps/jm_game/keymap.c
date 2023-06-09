@@ -24,7 +24,7 @@ enum tap_dances {
 };
 
 // https://docs.qmk.fm/#/feature_tap_dance
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [NTR_BCKSLSH] = ACTION_TAP_DANCE_DOUBLE(KC_ENT, KC_BSLS),
     [R_ONE] = ACTION_TAP_DANCE_DOUBLE(KC_R, KC_1),
     [F_TWO] = ACTION_TAP_DANCE_DOUBLE(KC_F, KC_2),

@@ -24,7 +24,7 @@ enum tap_dances {
 };
 
 // https://docs.qmk.fm/#/feature_tap_dance
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [NTR_BCKSLSH] = ACTION_TAP_DANCE_DOUBLE(KC_ENT, KC_BSLS),
     [R_ONE] = ACTION_TAP_DANCE_DOUBLE(KC_R, KC_1),
     [F_TWO] = ACTION_TAP_DANCE_DOUBLE(KC_F, KC_2),
@@ -65,16 +65,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_F12, KC_F11 , KC_LALT, LSFT_T(KC_SPC), KC_ENT, KC_NO  , KC_TRNS, KC_NO  ),
 
 	[MEDIA] = LAYOUT( \
-		KC_NO  , KC_MUTE, KC_VOLD , KC_VOLU, RGB_HUD, RGB_HUI, KC_NO, KC_NO, KC_NO, KC_PWR, KC_NO, KC_NO, RESET, \
+		KC_NO  , KC_MUTE, KC_VOLD , KC_VOLU, RGB_HUD, RGB_HUI, KC_NO, KC_NO, KC_NO, KC_PWR, KC_NO, KC_NO, QK_BOOT, \
 		KC_TRNS, RGB_TOG, RGB_RMOD, RGB_MOD, RGB_VAD, RGB_VAI, KC_NO, KC_NO, KC_NO, KC_NO , KC_NO, KC_NO, \
-		KC_NO  , RGB_M_P, RGB_SPD , RGB_SPI, RGB_SAD, RGB_SAI, KC_NO, KC_NO, KC_NO, KC_NO , KC_NO, KC_NO, KC_NO, \
+		KC_NO  , RGB_M_P, RGB_SPD , RGB_SPI, RGB_SAD, RGB_SAI, KC_NO, KC_NO, KC_NO, KC_NO , KC_NO, KC_NO, KC_NO  , \
 		AG_NORM, AG_SWAP, RGB_M_K , RGB_M_G, KC_NO  , KC_NO  , KC_NO, KC_NO),
 
 	[NUM] = LAYOUT( \
-		KC_NO  , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8 , KC_9 , KC_0   , KC_SLSH, KC_BSPC, \
+		KC_NO  , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8 , KC_9 , KC_0   , KC_DEL , KC_BSPC, \
 		KC_NO  , KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PLUS, KC_4   , KC_5 , KC_6 , KC_ASTR, KC_ENT , \
-		KC_LCTL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_COMM, KC_1 , KC_2 , KC_3   , KC_DOT , KC_TRNS, \
-		KC_LSFT, KC_NO  , KC_TRNS, KC_TRNS, KC_TRNS, KC_0   , KC_TRNS, KC_RCTL)
+		KC_LCTL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_COMM, KC_1 , KC_2 , KC_3   , KC_SLSH, KC_TRNS, \
+		KC_LSFT, KC_NO  , KC_TRNS, KC_TRNS, KC_TRNS, KC_0   , KC_DOT , KC_RCTL)
 
 };
 
