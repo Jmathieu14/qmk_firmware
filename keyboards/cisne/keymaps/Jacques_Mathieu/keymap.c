@@ -14,6 +14,7 @@ enum tap_dances {
     R_ONE,
     F_TWO,
     V_THREE,
+    C_THREE,
     T_FOUR,
     G_FIVE,
     B_SIX,
