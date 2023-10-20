@@ -20,7 +20,6 @@ enum tap_dances {
     B_SIX,
     Y_SEVEN,
     H_EIGHT,
-    N_NINE,
     U_ZERO
 };
 
@@ -36,7 +35,6 @@ tap_dance_action_t tap_dance_actions[] = {
     [B_SIX] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_6),
     [Y_SEVEN] = ACTION_TAP_DANCE_DOUBLE(KC_Y, KC_7),
     [H_EIGHT] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_8),
-    [N_NINE] = ACTION_TAP_DANCE_DOUBLE(KC_N, KC_9),
     [U_ZERO] = ACTION_TAP_DANCE_DOUBLE(KC_U, KC_0),
 };
 
@@ -45,13 +43,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[DEFAULT] = LAYOUT_1( \
 		LT(NUM,KC_ESC)  , KC_Q          , KC_W          , KC_F          , KC_P          , KC_B          , KC_J          , KC_L                , KC_U          , KC_Y          , KC_SCLN       , KC_BSPC       , \
 		LT(MEDIA,KC_TAB), KC_A          , KC_S          , KC_R          , KC_T          , KC_G          , KC_M          , KC_N                , KC_E          , KC_I          , KC_O          , KC_ENT        , \
-		KC_LCTL         , KC_LSFT       , KC_X          , KC_C          , KC_D          , KC_V          , KC_Z          , LT(SYM_FUNC,KC_QUOT), KC_K          , KC_H          , KC_COMM       , KC_DOT        , TD(FWDSLSH_BCKSLSH), KC_RSFT       , \
+		KC_GRV          , KC_LCTL       , KC_X          , KC_C          , KC_D          , KC_V          , KC_Z          , LT(SYM_FUNC,KC_QUOT), KC_K          , KC_H          , KC_COMM       , KC_DOT        , TD(FWDSLSH_BCKSLSH), KC_RSFT       , \
 		KC_LGUI         , KC_LALT       , LSFT_T(KC_SPC), KC_SPC        , MO(NAV)       , KC_RALT       , KC_RGUI       ),
 
 	[GAME] = LAYOUT_1( \
-		KC_TAB , KC_Q   , KC_W   , KC_E  , TD(R_ONE)  , TD(T_FOUR) , TD(Y_SEVEN), TD(U_ZERO), KC_I  , KC_O   , KC_P   , KC_TRNS, \
-		KC_SPC , KC_A   , KC_S   , KC_D  , TD(F_TWO)  , TD(G_FIVE) , TD(H_EIGHT), KC_J      , KC_K  , KC_L   , KC_SCLN, KC_TRNS, \
-		KC_LCTL, KC_LCTL, KC_Z   , KC_X  , TD(C_THREE), TD(V_THREE), TD(B_SIX)  , TD(N_NINE), KC_M  , KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, \
+		KC_TAB , KC_Q   , KC_W   , KC_E  , TD(R_ONE)  , TD(T_FOUR) , TD(Y_SEVEN), TD(U_ZERO), KC_I, KC_O, KC_P   , KC_TRNS, \
+		KC_SPC , KC_A   , KC_S   , KC_D  , TD(F_TWO)  , TD(G_FIVE) , TD(H_EIGHT), KC_J      , KC_K, KC_L, KC_SCLN, KC_TRNS, \
+		KC_LCTL, KC_LCTL, KC_Z   , KC_X  , TD(C_THREE), TD(V_THREE), TD(B_SIX)  , KC_9      , KC_N, KC_M, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, \
 		KC_ESC , KC_LALT, KC_LSFT, KC_SPC, KC_TRNS    , TO(DEFAULT), KC_TRNS    ),
 
 	[NAV] = LAYOUT_1( \
