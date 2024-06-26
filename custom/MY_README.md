@@ -10,6 +10,7 @@
 
     a. More information on that can be found here: https://www.reddit.com/r/olkb/comments/pdk39w/qmk_breaking_changes_2021_august_28/
 6. Furthermore, make sure MSYS or QMK MSYS are on the latest available version
+   - You can also run `pacman -Syuu` to make sure all installed tools are up to date. See [here](https://www.msys2.org/wiki/MSYS2-installation/) for more details
     
 # Keymap.json to Keymap.hex! (Windows OS)
 _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
