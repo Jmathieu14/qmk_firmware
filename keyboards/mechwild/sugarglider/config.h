@@ -3,6 +3,9 @@
 
 #pragma once
 
+#define TAPPING_TERM 175
+#define PERMISSIVE_HOLD
+
 /* Matrix COL and ROW definitions */
 #define MATRIX_ROWS 9
 #define MATRIX_COLS 6
