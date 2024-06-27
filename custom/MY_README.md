@@ -1,6 +1,7 @@
 # Initial Setup
 1. [CLI Development Environment](../docs/cli_development.md)
 2. Run `make git-submodule` in msys64 at project root
+   - If this fails or only a few submodules are properly made, run the following command per missing submodule specified in [.gitmodules](../.gitmodules): `rmdir lib/<LIB_NAME> && git submodule add -b <BRANCH> -f https://github.com/qmk/<LIB_NAME> lib/<LIB_NAME>`
 3. Run `qmk setup`
     - If you come across the following error, simply run the command `pacman -S mingw-w64-x86_64-hidapi -y` and then `qmk setup`
     - ``` python
