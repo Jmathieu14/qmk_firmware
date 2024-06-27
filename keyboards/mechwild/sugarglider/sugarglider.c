@@ -267,16 +267,19 @@ bool oled_task_kb(void) {
             oled_write_P(PSTR("Base "), false);
             break;
         case 1:
-            oled_write_P(PSTR("Lower"), false);
+            oled_write_P(PSTR("Game "), false);
             break;
         case 2:
-            oled_write_P(PSTR("Raise"), false);
+            oled_write_P(PSTR("Nav  "), false);
             break;
         case 3:
-            oled_write_P(PSTR("Adjst"), false);
+            oled_write_P(PSTR("Sym Fn"), false);
             break;
         case 4:
-            oled_write_P(PSTR("Mouse"), false);
+            oled_write_P(PSTR("Media "), false);
+            break;
+        case 5:
+            oled_write_P(PSTR("Num   "), false);
             break;
 #ifdef STENO_ENABLE
         case 5:

@@ -1,6 +1,7 @@
 # Initial Setup
 1. [CLI Development Environment](../docs/cli_development.md)
 2. Run `make git-submodule` in msys64 at project root
+   - If this fails or only a few submodules are properly made, run the following command per missing submodule specified in [.gitmodules](../.gitmodules): `rmdir lib/<LIB_NAME> && git submodule add -b <BRANCH> -f https://github.com/qmk/<LIB_NAME> lib/<LIB_NAME>`
 3. Run `qmk setup`
     - If you come across the following error, simply run the command `pacman -S mingw-w64-x86_64-hidapi -y` and then `qmk setup`
     - ``` python
@@ -17,19 +18,17 @@ _Note, all `qmk` commands must be run in the MSYS2 64bit Terminal_
 1. First run `qmk new-keymap -kb <keyboard_name>` so that qmk creates the new keymap folder for the specified board.
 
     a. It will then prompt you to enter the name for the keymap.
-    
-2. Now open 'keymap_json_to_c_layers.py' and make sure the path in the main method points to the qmk json keymap exported 
-from https://config.qmk.fm/.
-    
-3. Next, navigate to the folder that contains this new keymap.
 
-4. Run `python keymap_json_to_c_layers.py -f <json_filepath>` and paste the output into the keymap.c file for your new layout.
+1. Run `python keymap_json_to_c_layers.py -f <json_filepath>` and paste the output into the keymap.c file for your new layout.
 
-5. Open `QMK MSYS` and navigate to this qmk_firmware repo
+1. Run `cd ../ && python custom/format_<keyboard>_keymap_c_file.py` for your corresponding keyboard (if it exists)
+   - You will need to create a new python script for each new keyboard being programmed
 
-6. Type `export PYTHONUTF8=1` into the cli to ensure python and Windows get along
+1. Open `QMK MSYS` and navigate to this qmk_firmware repo
 
-7. Finally, run `qmk compile -kb <keyboard_name> -km <keymap>`. The hex file will be exported to `/.build`.
+1. Type `export PYTHONUTF8=1` into the cli to ensure python and Windows get along
+
+1. Finally, run `qmk compile -kb <keyboard_name> -km <keymap>`. The hex file will be exported to `/.build`.
     
     a. If you have any `ANY()` functions in your keymap.c file, you will have to delete that function. I.e. 
     `ANY(LSFT(LCTL(KC_GRV)))` will become `LSFT(LCTL(KC_GRV))`. _It will still work as expected!_
@@ -83,6 +82,17 @@ Keymap Name: jm_game_colemak_modified
 # Ψ Compile a firmware with your new keymap by typing:
 
         qmk compile -kb mechwild/mercutio -km jm_game
+        
+[jmath@J-CASH-REV-3 qmk_firmware]$ qmk new-keymap -kb mechwild/sugarglider
+Ψ Generating a new keymap
+
+
+Name Your Keymap
+Used for maintainer, copyright, etc
+
+Your GitHub Username?  [Jacques Mathieu]
+Ψ Created a new keymap called Jacques Mathieu in: C:/Users/jmath/local_documents/git/qmk_firmware/keyboards/mechwild/sugarglider/keymaps/Jacques Mathieu.
+Ψ Compile a firmware with your new keymap by typing: qmk compile -kb mechwild/sugarglider/wide_oled/f401 -km Jacques_Mathieu.
 ```
 
 ##### Other Resources
