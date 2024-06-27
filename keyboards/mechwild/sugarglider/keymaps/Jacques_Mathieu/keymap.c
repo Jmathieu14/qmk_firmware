@@ -59,10 +59,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 KC_TRNS, KC_ESC, KC_LSFT, KC_LALT    , KC_TRNS  , KC_TRNS   , TO(DEFAULT), KC_TRNS    , KC_TRNS    , KC_TRNS, KC_TRNS),
 
         [NAV] = LAYOUT( \
-                KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO, KC_NO   , DPI_UP  , KC_NO , KC_PGUP, KC_HOME      , KC_UP        , KC_END , KC_PGDN, \
-                KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO, TO(GAME), KC_NO   , DPI_DN, KC_NO  , KC_NO        , KC_LEFT      , KC_DOWN, KC_RGHT, KC_NO, \
-                KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO, KC_NO   , DPI_FINE, KC_NO , KC_NO  , LCTL(KC_LEFT), LCTL(KC_RGHT), KC_NO  , KC_NO  , \
-                KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO   , KC_NO   , KC_NO , KC_NO  , KC_TRNS      , KC_TRNS      ),
+                KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO  , KC_NO   , DPI_UP  , KC_NO , KC_PGUP, KC_HOME      , KC_UP        , KC_END , KC_PGDN, \
+                KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO  , TO(GAME), KC_NO   , DPI_DN, KC_NO  , KC_NO        , KC_LEFT      , KC_DOWN, KC_RGHT, KC_NO, \
+                KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO  , KC_NO   , DPI_FINE, KC_NO , KC_NO  , LCTL(KC_LEFT), LCTL(KC_RGHT), KC_NO  , KC_NO  , \
+                KC_TRNS, KC_NO, KC_NO, KC_NO, KC_BTN1, KC_BTN2 , DPI_FINE, KC_NO , KC_NO  , KC_TRNS      , KC_TRNS      ),
 
         [SYM_FUNC] = LAYOUT( \
                 KC_GRV , KC_EXLM, KC_AT , KC_HASH       , KC_DLR , KC_PERC, KC_TRNS, KC_CIRC, KC_AMPR, KC_LPRN, KC_RPRN, KC_ASTR, KC_TILD, \
