@@ -24,4 +24,4 @@
 [submodule "lib/lvgl"]
 	path = lib/lvgl
 	url = https://github.com/qmk/lvgl
-	branch = release/v8.2
+	branch = qmk-master
