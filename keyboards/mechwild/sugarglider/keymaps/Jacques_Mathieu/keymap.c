@@ -28,7 +28,7 @@ enum tap_dances {
     RSFT_RCTL
 };
 
-// https://docs.qmk.fm/#/feature_tap_dance
+// https://docs.qmk.fm/features/tap_dance
 tap_dance_action_t tap_dance_actions[] = {
     [FWDSLSH_BCKSLSH] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_BSLS),
     [R_ONE] = ACTION_TAP_DANCE_DOUBLE(KC_R, KC_1),
@@ -96,6 +96,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif
 
 void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_MOUSE);
+//     set_auto_mouse_layer(_MOUSE);
     set_auto_mouse_enable(true);
 }
