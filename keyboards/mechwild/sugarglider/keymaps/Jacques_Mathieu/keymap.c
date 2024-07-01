@@ -53,10 +53,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 KC_BTN3         , KC_LGUI       , LSFT_T(KC_SPC), KC_LALT       , KC_BTN1       , KC_BTN2       , KC_RGUI       , LT(SYM_FUNC,KC_QUOT), KC_SPC        , MO(NAV)       , KC_MUTE       ),
 
         [GAME] = LAYOUT( \
-                KC_TAB , KC_Q  , KC_W   , TD(E_THREE), TD(R_ONE), TD(T_FOUR), KC_TRNS    , TD(Y_SEVEN), TD(U_ZERO) , KC_I   , KC_O   , KC_P   , KC_TRNS, \
-                KC_SPC , KC_A  , KC_S   , KC_D       , KC_F     , TD(G_FIVE), KC_TRNS    , KC_TRNS    , TD(H_EIGHT), KC_J   , KC_K   , KC_L   , KC_SCLN, KC_TRNS, \
-                KC_LCTL, KC_Z  , KC_X   , TD(C_TWO)  , KC_V     , TD(B_SIX) , KC_TRNS    , TD(N_NINE) , KC_M       , KC_COMM, KC_DOT , KC_SLSH, KC_TRNS, \
-                KC_TRNS, KC_ESC, KC_LSFT, KC_LALT    , KC_TRNS  , KC_TRNS   , TO(DEFAULT), KC_TRNS    , KC_TRNS    , KC_TRNS, KC_TRNS),
+                KC_TAB , KC_Q   , KC_W   , TD(E_THREE), TD(R_ONE), TD(T_FOUR), KC_TRNS    , TD(Y_SEVEN), TD(U_ZERO) , KC_I   , KC_O   , KC_P   , KC_TRNS, \
+                KC_SPC , KC_A   , KC_S   , KC_D       , KC_F     , TD(G_FIVE), KC_TRNS    , KC_TRNS    , TD(H_EIGHT), KC_J   , KC_K   , KC_L   , KC_SCLN, KC_TRNS, \
+                KC_LCTL, KC_Z   , KC_X   , TD(C_TWO)  , KC_V     , TD(B_SIX) , KC_TRNS    , TD(N_NINE) , KC_M       , KC_COMM, KC_DOT , KC_SLSH, KC_TRNS, \
+                KC_TRNS, KC_LSFT, KC_LALT, KC_ESC     , KC_TRNS  , KC_TRNS   , TO(DEFAULT), KC_TRNS    , KC_TRNS    , KC_TRNS, KC_TRNS),
 
         [NAV] = LAYOUT( \
                 KC_NO  , KC_NO, KC_NO, KC_NO, KC_NO  , KC_NO   , DPI_UP  , KC_NO , KC_PGUP, KC_HOME      , KC_UP        , KC_END , KC_PGDN, \
